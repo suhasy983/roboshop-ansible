@@ -1,6 +1,6 @@
 - name: COpy MongoDB repo file
   ansible.builtin.copy:
-    scr: mongo.repo
+    src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
 
 - name: Install MongoDB Client
