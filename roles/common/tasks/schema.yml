@@ -1,0 +1,12 @@
+- name: COpy MongoDB repo file
+  ansible.builtin.copy:
+  scr: mongo.repo
+  dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB Client
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: latest
+
+- name: Load Master Data
+  ansible.builtin.shell: mongosh --host mongo.dev.sydevops80.online < /app/db/master-data.js
