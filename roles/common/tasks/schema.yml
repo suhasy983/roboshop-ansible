@@ -9,4 +9,4 @@
     state: latest
 
 - name: Load Master Data
-  ansible.builtin.shell: mongosh --host mongo.dev.sydevops80.online < /app/db/master-data.js
+  ansible.builtin.shell: mongosh --host mongo{{ env }}sydevops80.online < /app/db/master-data.js
