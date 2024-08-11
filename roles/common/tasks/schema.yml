@@ -12,7 +12,7 @@
         state: latest
 
     - name: Load Master Data
-      ansible.builtin.shell: mongosh --host mongo{{ env }}sydevops80.online < /app/db/{{ item }}.js
+      ansible.builtin.shell: mongosh --host mongo.{{ env }}sydevops80.online < /app/db/{{ item }}.js
       loop: "{{ schema_files }}"
 
 - name: Load mysql Schema
