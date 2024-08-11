@@ -23,6 +23,8 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: schema
+  when: schema_setup is defined
+
 
 - name: start systemd
   ansible.builtin.include_role:
