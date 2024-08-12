@@ -1,0 +1,25 @@
+- name: Install Golang
+  ansible.builtin.dnf:
+    name: golang
+    state: latest
+
+- name: App prerequisites
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-perreq.yml
+
+- name: Download NodeJS Dependencies
+  ansible.builtin.shell: go mod init dispatch; go get; go build # there could be npm module but we are still using shell module, since these steps will get removed when CI comes in.
+  args:
+    chdir: "{{ app_path }}"
+
+- name: load schemma
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: schema
+  when: schema_setup is defined
+
+- name: start systemd
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
